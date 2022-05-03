@@ -5,7 +5,7 @@ import {
   Col,
   Menu,
   MenuItem,
-  MenuSubitem,
+  SubMenu,
   Translate,
   List,
 } from 'components/Header/Header.styles';
@@ -23,44 +23,36 @@ const Header = () => (
         <Menu>
           <MenuItem>
             <a>Movies</a>
-            <MenuSubitem>
-              <Menu>
-                <a href=''>Popular</a>
-                <a href=''>Now Playing</a>
-                <a href=''>Upcoming</a>
-                <a href=''>Top Rated</a>
-              </Menu>
-            </MenuSubitem>
+            <SubMenu>
+              <a href=''>Popular</a>
+              <a href=''>Now Playing</a>
+              <a href=''>Upcoming</a>
+              <a href=''>Top Rated</a>
+            </SubMenu>
           </MenuItem>
           <MenuItem>
             <a>TV Shows</a>
-            <MenuSubitem>
-              <Menu>
-                <a href=''>Popular</a>
-                <a href=''>Airing Today</a>
-                <a href=''>On TV</a>
-                <a href=''>Top Rated</a>
-              </Menu>
-            </MenuSubitem>
+            <SubMenu>
+              <a href=''>Popular</a>
+              <a href=''>Airing Today</a>
+              <a href=''>On TV</a>
+              <a href=''>Top Rated</a>
+            </SubMenu>
           </MenuItem>
           <MenuItem>
             <a>People</a>
-            <MenuSubitem>
-              <Menu>
-                <a href=''>Popular People</a>
-              </Menu>
-            </MenuSubitem>
+            <SubMenu>
+              <a href=''>Popular People</a>
+            </SubMenu>
           </MenuItem>
           <MenuItem>
             <a>More</a>
-            <MenuSubitem>
-              <Menu>
-                <a href=''>Discussions</a>
-                <a href=''>Leadboard</a>
-                <a href=''>Support</a>
-                <a href=''>API</a>
-              </Menu>
-            </MenuSubitem>
+            <SubMenu>
+              <a href=''>Discussions</a>
+              <a href=''>Leadboard</a>
+              <a href=''>Support</a>
+              <a href=''>API</a>
+            </SubMenu>
           </MenuItem>
         </Menu>
       </Col>

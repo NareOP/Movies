@@ -11,7 +11,6 @@ const GlobalStyles = () => (
         color: #000;
         font-family: 'Source Sans Pro', Arial, sans-serif;
         font-size: 16px;
-        font-weight: 600;
       }
 
       html {
