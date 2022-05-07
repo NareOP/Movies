@@ -1,5 +1,6 @@
 import React from 'react';
 import { Global, css } from '@emotion/react';
+import styled from 'styled-components';
 
 const GlobalStyles = () => (
   <Global
@@ -11,6 +12,8 @@ const GlobalStyles = () => (
         color: #000;
         font-family: 'Source Sans Pro', Arial, sans-serif;
         font-size: 16px;
+        box-sizing: border-box;
+        font-weight: 600;
       }
 
       html {
@@ -42,3 +45,24 @@ const GlobalStyles = () => (
 );
 
 export default GlobalStyles;
+
+const Main = styled.main`
+  wdith: 100%;
+  padding: 30px 0;
+  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > div {
+    align-items: felx-start;
+  }
+`;
+
+const Title = styled.h2`
+  width: 100%;
+  margin-bottom: 20px;
+  font-size: 1.6em;
+`;
+
+export { Main, Title };

@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {
   HeaderContainer,
   Col,
@@ -9,11 +8,11 @@ import {
   Translate,
   List,
 } from 'components/Header/Header.styles';
-import { Content } from 'Common.styles';
+import { Container } from 'Common.styles';
 
 const Header = () => (
   <HeaderContainer>
-    <Content>
+    <Container>
       <Col>
         <img
           src='https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg'
@@ -22,36 +21,36 @@ const Header = () => (
         />
         <Menu>
           <MenuItem>
-            <a>Movies</a>
+            <a href='#'>Movies</a>
             <SubMenu>
-              <a href=''>Popular</a>
-              <a href=''>Now Playing</a>
-              <a href=''>Upcoming</a>
-              <a href=''>Top Rated</a>
+              <a href='#'>Popular</a>
+              <a href='#'>Now Playing</a>
+              <a href='#'>Upcoming</a>
+              <a href='#'>Top Rated</a>
             </SubMenu>
           </MenuItem>
           <MenuItem>
-            <a>TV Shows</a>
+            <a href='#'>TV Shows</a>
             <SubMenu>
-              <a href=''>Popular</a>
-              <a href=''>Airing Today</a>
-              <a href=''>On TV</a>
-              <a href=''>Top Rated</a>
+              <a href='#'>Popular</a>
+              <a href='#'>Airing Today</a>
+              <a href='#'>On TV</a>
+              <a href='#'>Top Rated</a>
             </SubMenu>
           </MenuItem>
           <MenuItem>
-            <a>People</a>
+            <a href='#'>People</a>
             <SubMenu>
-              <a href=''>Popular People</a>
+              <a href='#'>Popular People</a>
             </SubMenu>
           </MenuItem>
           <MenuItem>
-            <a>More</a>
+            <a href='#'>More</a>
             <SubMenu>
-              <a href=''>Discussions</a>
-              <a href=''>Leadboard</a>
-              <a href=''>Support</a>
-              <a href=''>API</a>
+              <a href='#'>Discussions</a>
+              <a href='#'>Leadboard</a>
+              <a href='#'>Support</a>
+              <a href='#'>API</a>
             </SubMenu>
           </MenuItem>
         </Menu>
@@ -64,8 +63,8 @@ const Header = () => (
             height={22}
           />
           <Translate>en</Translate>
-          <a href=''>Login</a>
-          <a href=''>Join TMDB</a>
+          <a href='#'>Login</a>
+          <a href='#'>Join TMDB</a>
           <img
             src='https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-28-search-blue-177462d06db81ff2a02aa022c1c0be5ba4200d7bd3f51091ed9298980e3a26a1.svg'
             alt=''
@@ -73,7 +72,7 @@ const Header = () => (
           />
         </List>
       </Col>
-    </Content>
+    </Container>
   </HeaderContainer>
 );
 
