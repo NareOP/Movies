@@ -10,8 +10,9 @@ const MoviesContext = createContext();
 export { MoviesContext };
 
 const BASE_URL = 'https://api.themoviedb.org/3';
-
-const FETCH_URL = `${BASE_URL}/discover/movie?api_key=${process.env.REACT_APP_API_KEY}`;
+const API_KEY =
+  process.env.REACT_APP_API_KEY || '6d8fd34d02fc9cbc871ec10f0bf6c8d1';
+const FETCH_URL = `${BASE_URL}/discover/movie?api_key=${API_KEY}`;
 
 const MoviesContextProvider = (props) => {
   const [movieData, setMovieData] = useState([]);
