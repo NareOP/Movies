@@ -25,4 +25,31 @@ const Content = styled.div`
   width: 100%;
 `;
 
-export { Content, Container, ContainerVertical };
+const Button = styled.div(
+  ({ disabled, borderRadius = 'var(--imageBorderRadius)' }) => `
+  margin-top: 30px;
+  padding: 0;
+  max-width: 100%;
+  width: 100%;  
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: ${borderRadius};
+  background: rgba(${disabled ? '228,228,228,0.7' : 'var(--accountLightBlue)'});
+
+  :hover {
+    cursor: ${disabled ? 'default' : 'pointer'};
+  }
+
+  p {
+    color: ${disabled ? 'rgba(0,0,0,0.5)' : '#fff'};
+
+    :hover {
+      color: ${disabled ? 'rgba(0,0,0,0.5)' : '#0a1526'};
+    }
+  }
+`
+);
+
+export { Content, Container, ContainerVertical, Button };

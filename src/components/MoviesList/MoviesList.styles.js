@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-const Item = styled.div`
+const Item = styled.div(
+  ({ showMore }) => `
   position: relative;
   top: 0;
   left: 0;
@@ -9,10 +10,95 @@ const Item = styled.div`
   align-content: flex-start;
   border: 1px solid #e3e3e3;
   border-radius: var(--imageBorderRadius);
-  overflow: hidden;
   margin-top: 30px;
   max-width: 180px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  &::before {
+    display: ${showMore ? 'inline-block' : 'none'};
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    transition: linear .1s;
+    border-radius: var(--imageBorderRadius);
+  }
+
+  ${MoreContent} {
+    display: ${showMore ? 'inline-block' : 'none'};
+  }
+`
+);
+
+const MoreContent = styled.div`
+  background-color: #fff;
+  color: #000;
+  border: 1px solid rgba(33, 37, 41, 0.15);
+  position: absolute;
+  display: flex;
+  opacity: 1;
+  width: 19em;
+  overflow: visible;
+  align-self: stretch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: absolute;
+  top: 42px;
+  left: 20px;
+  z-index: 15;
+  border-radius: 0.25rem;
+`;
+
+const MoreContentItem = styled.div`
+  border-top: 1px solid rgba(33, 37, 41, 0.15);
+  padding: 4px 0;
+
+  p {
+    padding: 6px 20px;
+    font-size: 0.9em;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  p:last-child {
+    a {
+      font-size: 0.9em;
+      display: inline-flex;
+      align-items: center;
+      font-weight: 600;
+      color: rgba(0, 0, 0, 0.6);
+      background-color: transparent;
+      text-decoration: none;
+    }
+
+    span {
+      background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-224-chevron-right-blue-6094fd9f49010170582ba069ce10c999c8fc78f107339d86ac363f12e3b6a927.svg');
+      top: 2px;
+      margin-left: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1em;
+      height: 1em;
+    }
+
+    &:hover {
+      background: rgba(var(--tmdbDarkBlue), 1);
+
+      a {
+        color: #fff;
+      }
+
+      span {
+        background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-224-chevron-right-white-a4e5bbaf210868cf7b5f16df5a4382100c675c90623f4e55ef9c7ff9b3dc2e21.svg');
+      }
+    }
+  }
 `;
 
 const ImgContainer = styled.div(
@@ -52,13 +138,14 @@ const MoreIcon = styled.div`
     width: 2em;
     height: 2em;
   }
-      
+
   :hover {
     cursor: pointer;
 
     img {
       // fill: rgba(var(--tmdbLightBlue), 1);
-      invert(2%) sepia(100%) saturate(2707%) hue-rotate(120deg) brightness(162%) contrast(96%)
+      filter: invert(2%) sepia(100%) saturate(2707%) hue-rotate(120deg)
+        brightness(162%) contrast(96%);
     }
   }
 `;
@@ -175,34 +262,11 @@ const MoviePage = styled.div`
   width: 100%;
 `;
 
-const LoadMoreButton = styled.div`
-  margin-top: 30px;
-  padding: 0;
-  max-width: 100%;
-  width: 100%;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--imageBorderRadius);
-  background: rgb(var(--accountLightBlue));
-
-  :hover {
-    cursor: pointer;
-  }
-
-  p {
-    color: #fff;
-
-    :hover {
-      color: #0a1526;
-    }
-  }
-`;
-
 export {
   MoviePage,
   Item,
+  MoreContent,
+  MoreContentItem,
   ItemContent,
   ItemTitle,
   ImgContainer,
@@ -210,5 +274,4 @@ export {
   PopularityIcon,
   ItemsContainer,
   MoreIcon,
-  LoadMoreButton,
 };

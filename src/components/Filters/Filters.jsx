@@ -12,6 +12,8 @@ import {
   DropdownFilterOption,
 } from './Filters.styles';
 
+import { Button } from 'Common.styles';
+
 const sortingFilters = [
   {
     id: 1,
@@ -58,12 +60,15 @@ const sortingFilters = [
 const Filters = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
+  const [isSearchButtonDisabled, setIsSearchButtonDisabled] = useState(true);
   const [selectedFilterOption, setSelectedFilterOption] = useState(
     sortingFilters[0]
   );
-  const { setFilters } = useContext(MoviesContext);
+  const { setFilters, applyFilters, setAutoLoadPage } =
+    useContext(MoviesContext);
 
   useEffect(() => {
+    setAutoLoadPage(false);
     setFilters((prev) => ({
       ...prev,
       page: 1,
@@ -90,7 +95,10 @@ const Filters = () => {
                 <DropdownFilterOption
                   key={item.id}
                   value={item.value}
-                  onClick={() => setSelectedFilterOption(item)}>
+                  onClick={() => {
+                    setSelectedFilterOption(item);
+                    setIsSearchButtonDisabled(false);
+                  }}>
                   {item.name}
                 </DropdownFilterOption>
               ))}
@@ -98,6 +106,15 @@ const Filters = () => {
           </DropdownFilter>
         </FilterContent>
       </FilterItem>
+      <Button
+        disabled={isSearchButtonDisabled}
+        borderRadius={'20px'}
+        onClick={async () => {
+          await applyFilters();
+          setIsSearchButtonDisabled(true);
+        }}>
+        <p>Search</p>
+      </Button>
     </FiltersContainer>
   );
 };

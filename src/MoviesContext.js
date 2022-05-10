@@ -17,6 +17,7 @@ const FETCH_URL = `${BASE_URL}/discover/movie?api_key=${API_KEY}`;
 const MoviesContextProvider = (props) => {
   const [movieData, setMovieData] = useState([]);
   const [filters, setFilters] = useState({ page: 1 });
+  const [autoLoadPage, setAutoLoadPage] = useState(false);
 
   const fetchData = async () => {
     let url = FETCH_URL;
@@ -35,25 +36,35 @@ const MoviesContextProvider = (props) => {
     }
   };
 
-  useEffect(() => {
-    (async () => {
-      const results = await fetchData();
-      setMovieData((prev) => [...prev, ...results]);
-    })();
-  }, [filters.page]);
+  const applyFilters = async () => {
+    const results = await fetchData();
+    setMovieData(results);
+  };
+
+  const initialRender = useRef(false);
 
   useEffect(() => {
-    (async () => {
-      const results = await fetchData();
-      setMovieData(results);
-    })();
-  }, [filters.sort_by]);
+    if (initialRender.current) {
+      (async () => {
+        const results = await fetchData();
+        setMovieData((prev) => [...prev, ...results]);
+      })();
+    } else {
+      initialRender.current = true;
+    }
+  }, [filters.page]);
 
   return (
     <MoviesContext.Provider
       value={useMemo(
-        () => ({ movies: movieData, setFilters }),
-        [movieData, setFilters]
+        () => ({
+          movies: movieData,
+          setFilters,
+          applyFilters,
+          autoLoadPage,
+          setAutoLoadPage,
+        }),
+        [movieData, setFilters, applyFilters, autoLoadPage, setAutoLoadPage]
       )}>
       {props.children}
     </MoviesContext.Provider>
