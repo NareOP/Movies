@@ -1,5 +1,24 @@
 import styled from 'styled-components';
 
+const MoreContent = styled.div`
+  background-color: #fff;
+  color: #000;
+  border: 1px solid rgba(33, 37, 41, 0.15);
+  position: absolute;
+  display: flex;
+  opacity: 1;
+  width: 19em;
+  overflow: visible;
+  align-self: stretch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: absolute;
+  top: 42px;
+  left: 20px;
+  z-index: 15;
+  border-radius: 0.25rem;
+`;
+
 const Item = styled.div(
   ({ showMore }) => `
   position: relative;
@@ -31,25 +50,6 @@ const Item = styled.div(
   }
 `
 );
-
-const MoreContent = styled.div`
-  background-color: #fff;
-  color: #000;
-  border: 1px solid rgba(33, 37, 41, 0.15);
-  position: absolute;
-  display: flex;
-  opacity: 1;
-  width: 19em;
-  overflow: visible;
-  align-self: stretch;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  position: absolute;
-  top: 42px;
-  left: 20px;
-  z-index: 15;
-  border-radius: 0.25rem;
-`;
 
 const MoreContentItem = styled.div`
   border-top: 1px solid rgba(33, 37, 41, 0.15);
@@ -178,7 +178,7 @@ const ItemDate = styled.p`
 `;
 
 const PopularityIcon = styled.div(({ popularity }) => {
-  const percent = parseInt(popularity);
+  const percent = parseInt(popularity, 10);
 
   // 16 is the radius of the circle
   const circumference = 16 * 2 * Math.PI;

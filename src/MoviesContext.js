@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useRef,
 } from 'react';
+import PropTypes from 'prop-types';
 
 const MoviesContext = createContext();
 export { MoviesContext };
@@ -14,7 +15,7 @@ const API_KEY =
   process.env.REACT_APP_API_KEY || '6d8fd34d02fc9cbc871ec10f0bf6c8d1';
 const FETCH_URL = `${BASE_URL}/discover/movie?api_key=${API_KEY}`;
 
-const MoviesContextProvider = (props) => {
+const MoviesContextProvider = ({ children }) => {
   const [movieData, setMovieData] = useState([]);
   const [filters, setFilters] = useState({ page: 1 });
   const [autoLoadPage, setAutoLoadPage] = useState(false);
@@ -22,7 +23,7 @@ const MoviesContextProvider = (props) => {
   const fetchData = async () => {
     let url = FETCH_URL;
     if (filters) {
-      Object.keys(filters).map((filter) => {
+      Object.keys(filters).forEach((filter) => {
         url += `&${filter}=${filters[filter]}`;
       });
     }
@@ -34,6 +35,8 @@ const MoviesContextProvider = (props) => {
     } catch (error) {
       console.log(error);
     }
+
+    return [];
   };
 
   const applyFilters = async () => {
@@ -66,9 +69,17 @@ const MoviesContextProvider = (props) => {
         }),
         [movieData, setFilters, applyFilters, autoLoadPage, setAutoLoadPage]
       )}>
-      {props.children}
+      {children}
     </MoviesContext.Provider>
   );
 };
 
 export default MoviesContextProvider;
+
+MoviesContextProvider.propTypes = {
+  children: PropTypes.node,
+};
+
+MoviesContextProvider.defaultProps = {
+  children: null,
+};

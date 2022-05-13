@@ -21,36 +21,36 @@ const Header = () => (
         />
         <Menu>
           <MenuItem>
-            <a href='#'>Movies</a>
+            <a href='/#'>Movies</a>
             <SubMenu>
-              <a href='#'>Popular</a>
-              <a href='#'>Now Playing</a>
-              <a href='#'>Upcoming</a>
-              <a href='#'>Top Rated</a>
+              <a href='/#'>Popular</a>
+              <a href='/#'>Now Playing</a>
+              <a href='/#'>Upcoming</a>
+              <a href='/#'>Top Rated</a>
             </SubMenu>
           </MenuItem>
           <MenuItem>
-            <a href='#'>TV Shows</a>
+            <a href='/#'>TV Shows</a>
             <SubMenu>
-              <a href='#'>Popular</a>
-              <a href='#'>Airing Today</a>
-              <a href='#'>On TV</a>
-              <a href='#'>Top Rated</a>
+              <a href='/#'>Popular</a>
+              <a href='/#'>Airing Today</a>
+              <a href='/#'>On TV</a>
+              <a href='/#'>Top Rated</a>
             </SubMenu>
           </MenuItem>
           <MenuItem>
-            <a href='#'>People</a>
+            <a href='/#'>People</a>
             <SubMenu>
-              <a href='#'>Popular People</a>
+              <a href='/#'>Popular People</a>
             </SubMenu>
           </MenuItem>
           <MenuItem>
-            <a href='#'>More</a>
+            <a href='/#'>More</a>
             <SubMenu>
-              <a href='#'>Discussions</a>
-              <a href='#'>Leadboard</a>
-              <a href='#'>Support</a>
-              <a href='#'>API</a>
+              <a href='/#'>Discussions</a>
+              <a href='/#'>Leadboard</a>
+              <a href='/#'>Support</a>
+              <a href='/#'>API</a>
             </SubMenu>
           </MenuItem>
         </Menu>
@@ -63,8 +63,8 @@ const Header = () => (
             height={22}
           />
           <Translate>en</Translate>
-          <a href='#'>Login</a>
-          <a href='#'>Join TMDB</a>
+          <a href='/#'>Login</a>
+          <a href='/#'>Join TMDB</a>
           <img
             src='https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-28-search-blue-177462d06db81ff2a02aa022c1c0be5ba4200d7bd3f51091ed9298980e3a26a1.svg'
             alt=''

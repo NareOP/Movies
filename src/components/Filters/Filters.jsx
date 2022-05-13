@@ -1,7 +1,8 @@
-import React, { useContext, useState, useEffect, useRef } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { MoviesContext } from 'MoviesContext';
+import { Button } from 'Common.styles';
 import {
   FiltersContainer,
   FilterItem,
@@ -11,8 +12,6 @@ import {
   DropdownFilterBody,
   DropdownFilterOption,
 } from './Filters.styles';
-
-import { Button } from 'Common.styles';
 
 const sortingFilters = [
   {
@@ -108,7 +107,7 @@ const Filters = () => {
       </FilterItem>
       <Button
         disabled={isSearchButtonDisabled}
-        borderRadius={'20px'}
+        borderRadius='20px'
         onClick={async () => {
           await applyFilters();
           setIsSearchButtonDisabled(true);
