@@ -1,8 +1,9 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
-import { MoviesContext } from 'MoviesContext';
-import { Button } from 'Common.styles';
+import { MoviesContext } from 'contexts/movies-context';
+import { Button } from 'components/shared/shared.styles';
+import arrowRight from 'assets/arrow-right.svg';
 import {
   FiltersContainer,
   FilterItem,
@@ -11,8 +12,11 @@ import {
   DropdownFilter,
   DropdownFilterBody,
   DropdownFilterOption,
-} from './Filters.styles';
+} from './filters.styles';
 
+/**
+ * Filters' parameters
+ */
 const sortingFilters = [
   {
     id: 1,
@@ -56,25 +60,40 @@ const sortingFilters = [
   },
 ];
 
-const Filters = () => {
+/**
+ * Construct Filter components and trigger changes
+ *
+ * @return {component} Filter component to show existing filters
+ */
+function Filters() {
+  // SortBy filter menu open status
   const [isOpen, setIsOpen] = useState(false);
+  // SortBy nested menu open status
   const [isSortMenuOpen, setIsSortMenuOpen] = useState(false);
+  // Search Button disable status
   const [isSearchButtonDisabled, setIsSearchButtonDisabled] = useState(true);
+  // Selected sortBy filter
   const [selectedFilterOption, setSelectedFilterOption] = useState(
     sortingFilters[0]
   );
   const { setFilters, applyFilters, setAutoLoadPage } =
     useContext(MoviesContext);
 
+  // Updates sortBy filter
   useEffect(() => {
     setAutoLoadPage(false);
     setFilters((prev) => ({
       ...prev,
       page: 1,
-      sort_by: selectedFilterOption.value,
+      sortBy: selectedFilterOption.value,
     }));
   }, [selectedFilterOption]);
 
+  /**
+   * Create filters component
+   *
+   * @return {component} Filters component with nested sortBy filter
+   */
   return (
     <FiltersContainer>
       <FilterItem>
@@ -82,7 +101,10 @@ const Filters = () => {
           isOpen={isOpen}
           onClick={() => setIsOpen((prev) => !prev)}>
           <p>Sort</p>
-          <span />
+          <img
+            src={arrowRight}
+            alt=''
+          />
         </FilterTitle>
         <FilterContent isOpen={isOpen}>
           <p>Sort Results By</p>
@@ -95,6 +117,7 @@ const Filters = () => {
                   key={item.id}
                   value={item.value}
                   onClick={() => {
+                    // save chosen filter an enable search button
                     setSelectedFilterOption(item);
                     setIsSearchButtonDisabled(false);
                   }}>
@@ -107,8 +130,9 @@ const Filters = () => {
       </FilterItem>
       <Button
         disabled={isSearchButtonDisabled}
-        borderRadius='20px'
+        borderRadius='1.25rem'
         onClick={async () => {
+          // fetch data with chosen filters and disable the search button
           await applyFilters();
           setIsSearchButtonDisabled(true);
         }}>
@@ -116,7 +140,7 @@ const Filters = () => {
       </Button>
     </FiltersContainer>
   );
-};
+}
 
 Filters.propTypes = {};
 

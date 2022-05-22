@@ -1,80 +1,163 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   HeaderContainer,
+  Sidebar,
   Col,
   Menu,
   MenuItem,
   SubMenu,
   Translate,
   List,
-} from 'components/Header/Header.styles';
-import { Container } from 'Common.styles';
+} from 'components/Header/header.styles';
+import { Container, Icon } from 'components/shared/shared.styles';
+import logoText from 'assets/logo-text.svg';
+import plus from 'assets/plus.svg';
+import search from 'assets/search.svg';
+import burgerMenu from 'assets/burger-menu.svg';
+import logo from 'assets/logo.svg';
+import profileIcon from 'assets/profile-icon.svg';
 
-const Header = () => (
-  <HeaderContainer>
-    <Container>
-      <Col>
-        <img
-          src='https://www.themoviedb.org/assets/2/v4/logos/v2/blue_short-8e7b30f73a4020692ccca9c88bafe5dcb6f8a62a4c6bc55cd9ba82bb2cd95f6c.svg'
-          alt='logo'
-          height={20}
-        />
-        <Menu>
-          <MenuItem>
-            <a href='/#'>Movies</a>
-            <SubMenu>
-              <a href='/#'>Popular</a>
-              <a href='/#'>Now Playing</a>
-              <a href='/#'>Upcoming</a>
-              <a href='/#'>Top Rated</a>
-            </SubMenu>
-          </MenuItem>
-          <MenuItem>
-            <a href='/#'>TV Shows</a>
-            <SubMenu>
-              <a href='/#'>Popular</a>
-              <a href='/#'>Airing Today</a>
-              <a href='/#'>On TV</a>
-              <a href='/#'>Top Rated</a>
-            </SubMenu>
-          </MenuItem>
-          <MenuItem>
-            <a href='/#'>People</a>
-            <SubMenu>
-              <a href='/#'>Popular People</a>
-            </SubMenu>
-          </MenuItem>
-          <MenuItem>
-            <a href='/#'>More</a>
-            <SubMenu>
-              <a href='/#'>Discussions</a>
-              <a href='/#'>Leadboard</a>
-              <a href='/#'>Support</a>
-              <a href='/#'>API</a>
-            </SubMenu>
-          </MenuItem>
-        </Menu>
-      </Col>
-      <Col>
-        <List>
+/**
+ * Construct Header component
+ *
+ * @returns {component} Header component
+ */
+function Header() {
+  // Sidebar open status
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  return (
+    <HeaderContainer>
+      <Container>
+        <Col show='desktop'>
           <img
-            src='https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-371-plus-white-0bac34f16124808a12ea863b4d9cc6e599dee7c0a80658cfe9ead26939e64517.svg'
-            alt=''
-            height={22}
+            src={logoText}
+            alt='logo'
+            height={20}
           />
-          <Translate>en</Translate>
+          <Menu>
+            <MenuItem>
+              <a href='/#'>Movies</a>
+              <SubMenu>
+                <a href='/#'>Popular</a>
+                <a href='/#'>Now Playing</a>
+                <a href='/#'>Upcoming</a>
+                <a href='/#'>Top Rated</a>
+              </SubMenu>
+            </MenuItem>
+            <MenuItem>
+              <a href='/#'>TV Shows</a>
+              <SubMenu>
+                <a href='/#'>Popular</a>
+                <a href='/#'>Airing Today</a>
+                <a href='/#'>On TV</a>
+                <a href='/#'>Top Rated</a>
+              </SubMenu>
+            </MenuItem>
+            <MenuItem>
+              <a href='/#'>People</a>
+              <SubMenu>
+                <a href='/#'>Popular People</a>
+              </SubMenu>
+            </MenuItem>
+            <MenuItem>
+              <a href='/#'>More</a>
+              <SubMenu>
+                <a href='/#'>Discussions</a>
+                <a href='/#'>Leadboard</a>
+                <a href='/#'>Support</a>
+                <a href='/#'>API</a>
+              </SubMenu>
+            </MenuItem>
+          </Menu>
+        </Col>
+        <Col show='desktop'>
+          <List>
+            <img
+              src={plus}
+              alt=''
+              height={22}
+            />
+            <Translate>en</Translate>
+            <a href='/#'>Login</a>
+            <a href='/#'>Join TMDB</a>
+            <img
+              src={search}
+              alt=''
+              height={30}
+            />
+          </List>
+        </Col>
+        <Col
+          show='tablet'
+          onClick={() => setIsSidebarOpen((prev) => !prev)}>
+          <Icon white>
+            <img
+              src={burgerMenu}
+              alt='menu'
+            />
+          </Icon>
+        </Col>
+        <Col show='tablet'>
+          <img
+            src={logo}
+            alt='logo'
+          />
+        </Col>
+        <Col show='tablet'>
+          <Icon white>
+            <img
+              src={profileIcon}
+              alt='profile'
+            />
+          </Icon>
+          <img
+            src={search}
+            alt='search'
+          />
+        </Col>
+      </Container>
+      <Sidebar show={isSidebarOpen}>
+        <h5>
+          <a href='/#'>Movies</a>
+        </h5>
+        <h5>
+          <a href='/#'>TV Shows</a>
+        </h5>
+        <h5>
+          <a href='/#'>People</a>
+        </h5>
+        <p>
+          <a href='/#'>Contribution Bible</a>
+        </p>
+        <p>
+          <a href='/#'>Apps</a>
+        </p>
+        <p>
+          <a href='/#'>Discussions</a>
+        </p>
+        <p>
+          <a href='/#'>Leaderboard</a>
+        </p>
+        <p>
+          <a href='/#'>Contribute</a>
+        </p>
+        <p>
+          <a href='/#'>API</a>
+        </p>
+        <p>
+          <a href='/#'>Support</a>
+        </p>
+        <p>
+          <a href='/#'>About</a>
+        </p>
+        <p>
           <a href='/#'>Login</a>
-          <a href='/#'>Join TMDB</a>
-          <img
-            src='https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-28-search-blue-177462d06db81ff2a02aa022c1c0be5ba4200d7bd3f51091ed9298980e3a26a1.svg'
-            alt=''
-            height={30}
-          />
-        </List>
-      </Col>
-    </Container>
-  </HeaderContainer>
-);
+        </p>
+      </Sidebar>
+    </HeaderContainer>
+  );
+}
 
 Header.propTypes = {};
 

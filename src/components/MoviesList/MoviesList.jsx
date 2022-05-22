@@ -1,6 +1,10 @@
 import React, { useContext, useState, useEffect, useRef } from 'react';
-import { MoviesContext } from 'MoviesContext';
-import { Button } from 'Common.styles';
+import { MoviesContext } from 'contexts/movies-context';
+import { Button } from 'components/shared/shared.styles';
+import arrowRightBlue from 'assets/arrow-right-blue.svg';
+import arrowRightWhite from 'assets/right-arrow-white.svg';
+import placeholder from 'assets/placeholder.svg';
+import more from 'assets/more.svg';
 import {
   MoviePage,
   Item,
@@ -13,19 +17,31 @@ import {
   PopularityIcon,
   ItemsContainer,
   MoreIcon,
-} from './MoviesList.styles';
+} from './movies-list.styles';
 
-const MoviesList = () => {
+/**
+ * Create movies' list
+ *
+ * @return {omponent} MovieList component containing Movie components
+ */
+function MoviesList() {
+  const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w220_and_h330_face';
+
   const { movies, setFilters, autoLoadPage, setAutoLoadPage } =
     useContext(MoviesContext);
+  // keep current pop-up menu on every movie item
   const ref = useRef();
+  // placeholder for the ref to prevent errors of null ref in rendering
   const refPlaceholder = useRef();
+  const [isLoginOnHover, setIsLoginOnHover] = useState(false);
+  // keeps the movie details of the movie item which pop-up menu is open
   const [showMore, setShowMore] = useState({
     value: false,
     elementId: 0,
     ref,
   });
 
+  // date format to "mm dd, yyyy" string
   const customizeDate = (dateString) => {
     if (!dateString) return '';
     let date = new Date(dateString).toDateString();
@@ -35,6 +51,7 @@ const MoviesList = () => {
     return ''.concat(month, ' ', day, ', ', year);
   };
 
+  // on scroll automatically load data once "load more" button is clicked
   const handleScroll = () => {
     const bottom =
       Math.ceil(window.innerHeight + window.scrollY) >=
@@ -44,6 +61,7 @@ const MoviesList = () => {
     }
   };
 
+  // handle scroll event in the document
   useEffect(() => {
     window.addEventListener('scroll', handleScroll, {
       passive: true,
@@ -53,12 +71,15 @@ const MoviesList = () => {
     };
   });
 
+  // close the pop-up menu of movie item when the mouse is clicked outside the pop-up
   useEffect(() => {
     function handleClickOutside(event) {
+      // checks if the click is outside the element
       if (
         showMore.ref.current &&
         !showMore.ref.current.contains(event.target)
       ) {
+        // initialize the state of current pop-up menu
         setShowMore((prev) => ({
           ...prev,
           value: false,
@@ -74,10 +95,16 @@ const MoviesList = () => {
     };
   }, [setShowMore.ref]);
 
+  /**
+   * Create movies list
+   *
+   * @return {component} movie list which has movie items with detailed data
+   */
   return (
     <MoviePage>
       <ItemsContainer>
         {movies.map((item) => (
+          // render movie item working with pop-up menu
           <Item
             key={item.id}
             details={item}
@@ -89,8 +116,16 @@ const MoviesList = () => {
               }>
               <MoreContentItem>
                 <p>Want to rate or add this item to a list?</p>
-                <p>
-                  <a href='/#'>Login</a> <span />
+                <p
+                  onMouseOver={() => setIsLoginOnHover((prev) => !prev)}
+                  onFocus={() => setIsLoginOnHover((prev) => !prev)}
+                  onMouseOut={() => setIsLoginOnHover((prev) => !prev)}
+                  onBlur={() => setIsLoginOnHover((prev) => !prev)}>
+                  <a href='/#'>Login</a>{' '}
+                  <img
+                    src={isLoginOnHover ? arrowRightWhite : arrowRightBlue}
+                    alt='go'
+                  />
                 </p>
               </MoreContentItem>
               <MoreContentItem>
@@ -101,9 +136,17 @@ const MoviesList = () => {
               </MoreContentItem>
             </MoreContent>
             <ImgContainer background={item.backdrop_path}>
-              <img alt='' />
+              <img
+                src={
+                  item.backdrop_path
+                    ? IMAGE_BASE_URL + item.backdrop_path
+                    : placeholder
+                }
+                alt=''
+              />
               <MoreIcon
                 onClick={() => {
+                  // keeps the current open pop-up menu
                   setShowMore((prev) => ({
                     ...prev,
                     value: item.id === prev.elementId ? !prev.value : true,
@@ -111,7 +154,7 @@ const MoviesList = () => {
                   }));
                 }}>
                 <img
-                  src='https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-947-circle-more-white-4c440dfc1b0e626c70f4853dbbce9c4d1f2c5d8f3e05a7d3df47881cbd816adf.svg'
+                  src={more}
                   alt=''
                 />
               </MoreIcon>
@@ -158,7 +201,7 @@ const MoviesList = () => {
       </Button>
     </MoviePage>
   );
-};
+}
 
 MoviesList.propTypes = {};
 

@@ -1,35 +1,40 @@
 import styled from 'styled-components';
 
 const FiltersContainer = styled.div`
-  margin: 30px 30px 0 0;
+  margin: 1.875rem 1.875rem 0 0;
+
+  @media screen and (max-width: 25.75rem) {
+    margin-right: 0;
+  }
 `;
 
 const FilterItem = styled.div`
-  min-width: 260px;
-  width: 260px;
-  border: 1px solid #e3e3e3;
+  min-width: 16.25rem;
+  width: 16.25rem;
+  border: 0.063rem solid #e3e3e3;
   border-radius: var(--imageBorderRadius);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  box-shadow: 0 0.125rem 0.5rem #0000001a;
+  width: 100%;
 `;
 
 const FilterContent = styled.div(
   ({ isOpen }) => `
   display: ${isOpen ? 'block' : 'none'};
   width: 100%;  
-  border-top: 1px solid #eee;
-  padding: 14px 16px 16px 16px;
+  border-top: 0.063rem solid #eee;
+  padding: 1rem;
+  padding-top: 0.875rem;
 
   > p {
     display: inline-flex;
     align-items: center;
     width: 100%;
-    font-size: 1em;
+    font-size: 1rem;
     font-weight: 300;
-    margin-bottom: 10px
+    margin-bottom: 0.625rem;
   }
 `
 );
@@ -41,24 +46,23 @@ const FilterTitle = styled.div(
   justify-content: space-between;
   flex-wrap: nowrap;
   align-items: center;
-  padding: 14px 16px;
+  padding: 0.875rem 1rem;
 
   :hover {
     cursor: pointer;
   }
 
-  span {
-    background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-224-chevron-right-d1f88a6c15e68190c3b47e1ee4f39fe47f4b69f4966ca7c250c2e14cfa689a04.svg');
+  img {
+    width: 1rem;
+    height: 1rem;
+    min-width: 1rem;
+    min-height: 1rem;
     position: relative;
     top: 0;
     left: 0;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 1em;
-    min-height: 1em;
-    width: 1em;
-    height: 1em;
     line-height: inherit;
     transform: ${isOpen && 'rotate(90deg)'};
   }
@@ -66,32 +70,22 @@ const FilterTitle = styled.div(
 );
 
 const DropdownFilter = styled.div`
-  border-radius: 0.25rem;
   width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
-  border-width: 1px;
-  border-style: solid;
-  box-sizing: border-box;
-  position: relative;
+  height: calc(1.5rem + 0.75rem);
   margin: 0;
   padding: 0.375rem 0.75rem;
-  width: 100%;
-  height: calc(1.5em + 0.75rem);
-  box-shadow: none;
-  color: inherit;
-  background: 0 0;
-  font: inherit;
+  position: relative;
   display: flex;
-  flex-flow: row nowrap;
   align-items: center;
-  flex: 0 1 auto;
-  text-overflow: ellipsis;
+  flex-flow: row nowrap;
+  box-shadow: none;
   cursor: pointer;
-
+  border-radius: 0.25rem;
+  border-width: 0.063rem;
   border-color: #e4e7eb;
   color: #212529;
   background-color: #e4e7eb;
+  z-index: 1;
   transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out,
     border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 
@@ -101,12 +95,12 @@ const DropdownFilter = styled.div`
   }
 
   span:first-child {
+    width: 100%;
+    height: calc(1.5rem + 0.75rem);
     display: inline-flex;
     align-items: center;
-    width: 100%;
-    font-size: 1em;
+    font-size: 1rem;
     font-weight: 300;
-    height: calc(1.5em + 0.75rem);
     text-overflow: ellipsis;
   }
 `;
@@ -114,35 +108,25 @@ const DropdownFilter = styled.div`
 const DropdownFilterBody = styled.div(
   ({ isOpen }) => `
   display: ${isOpen ? 'block' : 'none'};
-  position: absolute;
-  overflow-y: scroll;
-  top: 35px;
-  left: 0px;
-  border: 1px solid red;
-  height: 12em;
-  background: #fff;
+  height: 12rem;
   width: 100%;
-  border: 1px solid #c7cdd5;
   padding: 0.375rem 0;
+  position: absolute;
+  top: 2.188rem;
+  left: 0rem;
+  overflow-y: scroll;
+  background: #fff;
+  border: 0.063rem solid #c7cdd5;
 `
 );
 
 const DropdownFilterOption = styled.p`
-  margin: 0;
   padding: 0.375rem 0.75rem;
   width: 100%;
-  min-width: 0;
   height: calc(1.5em + 0.75rem);
-  border: 0;
-  outline: 0;
-  box-shadow: none;
-  color: inherit;
-  background: 0 0;
-  font: inherit;
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  flex: 0 1 auto;
   text-overflow: ellipsis;
   font-size: 0.9em;
   font-weight: 400;

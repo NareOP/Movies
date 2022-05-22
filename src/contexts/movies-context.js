@@ -6,31 +6,31 @@ import React, {
   useRef,
 } from 'react';
 import PropTypes from 'prop-types';
+import { getMovies } from 'services/movies';
 
+// context to share data realted to movies
 const MoviesContext = createContext();
 export { MoviesContext };
 
-const BASE_URL = 'https://api.themoviedb.org/3';
-const API_KEY =
-  process.env.REACT_APP_API_KEY || '6d8fd34d02fc9cbc871ec10f0bf6c8d1';
-const FETCH_URL = `${BASE_URL}/discover/movie?api_key=${API_KEY}`;
-
-const MoviesContextProvider = ({ children }) => {
+/**
+ * Creates context provider to serve as a one source of shared data between different components on different levels
+ *
+ * @param {node} children
+ * @return {contextProvider} Context provider containing the children with shared data
+ */
+function MoviesContextProvider({ children }) {
   const [movieData, setMovieData] = useState([]);
   const [filters, setFilters] = useState({ page: 1 });
   const [autoLoadPage, setAutoLoadPage] = useState(false);
 
+  /**
+   * Calls movies service to get data with specified filters
+   *
+   * @return {array} Movie item object's list, deafult return value is []
+   */
   const fetchData = async () => {
-    let url = FETCH_URL;
-    if (filters) {
-      Object.keys(filters).forEach((filter) => {
-        url += `&${filter}=${filters[filter]}`;
-      });
-    }
-
     try {
-      const reponse = await fetch(url);
-      const { results } = await reponse.json();
+      const { results } = await getMovies(filters.page, filters.sortBy);
       return results;
     } catch (error) {
       console.log(error);
@@ -39,13 +39,16 @@ const MoviesContextProvider = ({ children }) => {
     return [];
   };
 
+  // fetch and set movie data based on filters
   const applyFilters = async () => {
     const results = await fetchData();
     setMovieData(results);
   };
 
+  // this is to prevent dual useEffect calling in development mode, may be removed in production mode
   const initialRender = useRef(false);
 
+  // trigger page change and load data to push add in movie list
   useEffect(() => {
     if (initialRender.current) {
       (async () => {
@@ -72,7 +75,7 @@ const MoviesContextProvider = ({ children }) => {
       {children}
     </MoviesContext.Provider>
   );
-};
+}
 
 export default MoviesContextProvider;
 

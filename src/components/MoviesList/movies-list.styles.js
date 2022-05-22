@@ -3,18 +3,18 @@ import styled from 'styled-components';
 const MoreContent = styled.div`
   background-color: #fff;
   color: #000;
-  border: 1px solid rgba(33, 37, 41, 0.15);
+  border: 0.063rem solid #21252926;
   position: absolute;
   display: flex;
   opacity: 1;
-  width: 19em;
+  width: 19rem;
   overflow: visible;
   align-self: stretch;
   overflow: hidden;
   text-overflow: ellipsis;
   position: absolute;
-  top: 42px;
-  left: 20px;
+  top: 2.625rem;
+  left: 1.25rem;
   z-index: 15;
   border-radius: 0.25rem;
 `;
@@ -27,11 +27,11 @@ const Item = styled.div(
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
-  border: 1px solid #e3e3e3;
+  border: 0.063rem solid #e3e3e3;
   border-radius: var(--imageBorderRadius);
-  margin-top: 30px;
-  max-width: 180px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 1.875rem;
+  max-width: 11.25rem;
+  box-shadow: 0 0.125rem 0.5rem #0000001a;
 
   &::before {
     display: ${showMore ? 'inline-block' : 'none'};
@@ -39,7 +39,7 @@ const Item = styled.div(
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: #00000080;
     z-index: 2;
     transition: linear .1s;
     border-radius: var(--imageBorderRadius);
@@ -52,12 +52,12 @@ const Item = styled.div(
 );
 
 const MoreContentItem = styled.div`
-  border-top: 1px solid rgba(33, 37, 41, 0.15);
-  padding: 4px 0;
+  border-top: 0.063rem solid #21252908;
+  padding: 0.25rem 0;
 
   p {
-    padding: 6px 20px;
-    font-size: 0.9em;
+    padding: 0.375rem 1.25rem;
+    font-size: 0.9rem;
     display: flex;
     flex-wrap: wrap;
     align-content: center;
@@ -71,31 +71,26 @@ const MoreContentItem = styled.div`
       display: inline-flex;
       align-items: center;
       font-weight: 600;
-      color: rgba(0, 0, 0, 0.6);
+      color: #00000099;
       background-color: transparent;
       text-decoration: none;
     }
 
-    span {
-      background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-224-chevron-right-blue-6094fd9f49010170582ba069ce10c999c8fc78f107339d86ac363f12e3b6a927.svg');
-      top: 2px;
-      margin-left: 4px;
+    img {
+      top: 0.125rem;
+      margin-left: 0.25rem;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 1em;
-      height: 1em;
+      width: 1rem;
+      height: 1rem;
     }
 
     &:hover {
-      background: rgba(var(--tmdbDarkBlue), 1);
+      background: var(--tmdbDarkBlue);
 
       a {
         color: #fff;
-      }
-
-      span {
-        background-image: url('https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-224-chevron-right-white-a4e5bbaf210868cf7b5f16df5a4382100c675c90623f4e55ef9c7ff9b3dc2e21.svg');
       }
     }
   }
@@ -107,26 +102,21 @@ const ImgContainer = styled.div(
   > img {
     width: 100%;
     height: 100%;
-    min-height: 17em; 
+    min-height: 17rem; 
     background-color: #dbdbdb;
-    content: url(${
-      background
-        ? `https://image.tmdb.org/t/p/w220_and_h330_face${background}`
-        : 'https://www.themoviedb.org/assets/2/v4/glyphicons/basic/glyphicons-basic-38-picture-grey-c2ebdbb057f2a7614185931650f8cee23fa137b93812ccb132b9df511df1cfac.svg'
-    });
   }
 `
 );
 
 const MoreIcon = styled.div`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 0.625rem;
+  right: 0.625rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 1.5em;
-  height: 1.5em;
+  width: 1.5rem;
+  height: 1.5rem;
   opacity: 0.7;
   line-height: inherit;
   background-position: center center;
@@ -135,15 +125,15 @@ const MoreIcon = styled.div`
   box-sizing: border-box;
 
   img {
-    width: 2em;
-    height: 2em;
+    width: 2rem;
+    height: 2rem;
   }
 
   :hover {
     cursor: pointer;
 
     img {
-      // fill: rgba(var(--tmdbLightBlue), 1);
+      // fill: var(--tmdbLightBlue);
       filter: invert(2%) sepia(100%) saturate(2707%) hue-rotate(120deg)
         brightness(162%) contrast(96%);
     }
@@ -152,7 +142,7 @@ const MoreIcon = styled.div`
 
 const ItemContent = styled.div`
   width: 100%;
-  padding: 26px 10px 12px 10px;
+  padding: 1.625rem 0.625rem 0.75rem 0.625rem;
   position: relative;
   white-space: normal;
   display: flex;
@@ -161,20 +151,20 @@ const ItemContent = styled.div`
 `;
 
 const ItemTitle = styled.h2`
-  color: rgba(var(--tmdbLightBlue), 1);
+  color: var(--tmdbLightBlue);
   font-weight: 700;
 
   a {
     text-decoration: none;
     :hover {
-      color: rgba(var(--tmdbLightBlue), 1);
+      color: var(--tmdbLightBlue);
     }
   }
 `;
 
 const ItemDate = styled.p`
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 14px;
+  color: #00000099;
+  font-size: 0.875rem;
 `;
 
 const PopularityIcon = styled.div(({ popularity }) => {
@@ -190,43 +180,43 @@ const PopularityIcon = styled.div(({ popularity }) => {
 
   return `
   position: absolute;
-  top: -19px;
-  left: 10px;
+  top: -1.188rem;
+  left: 0..625rem;
   z-index: 1;
   border-radius: 50%;
   background-color: #081c22;
-  width: 38px;
-  height: 38px;
+  width: 2.375rem;
+  height: 2.375rem;
   display: flex;
   justify-content: center;
   align-items: center;
 
   div {
-    font-size: 0.8em !important;
-    padding: 10px 0;
+    font-size: 0.8rem !important;
+    padding: 0.625rem 0;
     color: #fff;
     text-align: center;
     
     ::after {
       content: '%';
-      font-size: 0.6em;
+      font-size: 0.6rem;
       color: #fff;
-      padding-top: 1px;
-      padding-left: 1px;
+      padding-top: 0.063rem;
+      padding-left: 0.063rem;
       position: relative;
-      bottom: 5px;
+      bottom: 0.25rem;
       display: ${percent > 0 ? 'inline-block' : 'none'}
     }
   }
 
   svg {
-    width: 34px !important;
-    height: 34px !important;
-    width: 42px !important;
-    height: 42px !important;
+    width: 2.125rem !important;
+    height: 2.125rem !important;
+    width: 2.625rem !important;
+    height: 2.625rem !important;
     position: absolute;
-    top: -2px;
-    left: -2px;
+    top: -0.125rem;
+    left: -0.125rem;
     z-index: 100;
 
     circle:first-child {
@@ -253,9 +243,13 @@ const PopularityIcon = styled.div(({ popularity }) => {
 const ItemsContainer = styled.div`
   width: inherit;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 0 2em;
+  grid-template-columns: repeat(auto-fill, minmax(9.375rem, 1fr));
+  gap: 0 2rem;
   justify-items: center;
+
+  @media screen and (max-width: 34rem) {
+    grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  }
 `;
 
 const MoviePage = styled.div`

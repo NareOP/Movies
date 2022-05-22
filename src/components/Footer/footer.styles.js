@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const FooterContainer = styled.header`
+const FooterContainer = styled.footer`
   max-width: 100%;
   width: 100vw;
   box-sizing: border-box;
@@ -8,7 +8,7 @@ const FooterContainer = styled.header`
   background-image: radial-gradient(
     at 30% top,
     #031d33 0%,
-    rgba(var(--tmdbDarkBlue), 1) 70%
+    var(--tmdbDarkBlue) 70%
   );
   background-position: center top;
   background-size: cover;
@@ -21,68 +21,84 @@ const FooterContainer = styled.header`
   > div {
     display: flex;
     justify-content: space-between;
-    padding-top: 80px;
-    padding-bottom: 80px;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+
+    @media screen and (max-width: 56.25rem) {
+      flex-direction: column;
+    }
   }
 `;
 
-const FooterLogo = styled.header`
+const FooterLogo = styled.div`
   text-align: right;
   position: relative;
-  top: -36px;
+  top: -2.25rem;
   right: 0;
-  margin-right: 40px;
+  margin-right: 2.5rem;
 
   img {
     display: block;
     position: absolute;
     top: 0;
     right: 0;
-    width: 130px;
-    height: 94px;
+    width: 8.125rem;
+    height: 5.875rem;
+
+    @media screen and (max-width: 56.25rem) {
+      display: none;
+    }
   }
 
   a {
     position: relative;
-    top: 140px;
+    top: 8.75rem;
     border-color: #fff;
     background-color: #fff;
-    color: rgba(var(--tmdbLightBlue), 1);
-    font-size: 1.3em;
+    color: var(--tmdbLightBlue);
+    font-size: 1.3rem;
     font-weight: bold;
     display: inline-block;
     word-wrap: break-word;
     white-space: normal;
     text-transform: uppercase;
-    border: 2px solid #fff;
-    border-radius: 5px;
-    padding: 8px 16px;
+    border: 0.125rem solid #fff;
+    border-radius: 0.375rem;
+    padding: 0.5rem 1rem;
     transition: linear 0.1s;
     text-decoration: none;
+
+    @media screen and (max-width: 56.25rem) {
+      top: 0;
+    }
   }
 `;
-const FooterMenu = styled.header`
-  margin-right: 40px;
+const FooterMenu = styled.div`
+  margin-right: 2.5rem;
   min-width: 0;
   box-sizing: border-box;
 
   h3 {
     font-weight: bold;
-    font-size: 1.4em;
-    line-height: 1.4em;
+    font-size: 1.4rem;
+    line-height: 1.4rem;
     text-transform: uppercase;
     color: #fff;
     white-space: nowrap;
   }
 
   ul li {
-    line-height: 1.6em;
-    max-width: 260px;
+    line-height: 1.6rem;
+    max-width: 16.25rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     color: #fff;
     font-weight: 300;
+  }
+
+  @media screen and (max-width: 56.25rem) {
+    margin-bottom: 1.5rem;
   }
 `;
 
