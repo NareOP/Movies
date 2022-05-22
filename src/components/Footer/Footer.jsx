@@ -1,7 +1,62 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import logo from 'assets/logo.svg';
+import { FooterContainer, FooterLogo, FooterMenu } from './footer.styles';
 
-const Footer = () => <div>Footer Component</div>;
+/**
+ * Construct Footer component
+ *
+ * @returns {component} Footer component
+ */
+function Footer() {
+  return (
+    <FooterContainer>
+      <div>
+        <FooterLogo>
+          <img
+            src={logo}
+            alt=''
+          />
+          <a href='/#'>Join the community</a>
+        </FooterLogo>
+        <FooterMenu>
+          <h3>The Basics</h3>
+          <ul>
+            <li>About TMDB</li>
+            <li>Contact Us</li>
+            <li>Support Forums</li>
+            <li>API</li>
+            <li>System Status</li>
+          </ul>
+        </FooterMenu>
+        <FooterMenu>
+          <h3>Get Involved</h3>
+          <ul>
+            <li>Contribution Bible</li>
+            <li>Add New Movie</li>
+            <li>Add New TV Show</li>
+          </ul>
+        </FooterMenu>
+        <FooterMenu>
+          <h3>Community</h3>
+          <ul>
+            <li>Guidelines</li>
+            <li>Discussions</li>
+            <li>Leaderboard</li>
+            <li>Twitter</li>
+          </ul>
+        </FooterMenu>
+        <FooterMenu>
+          <h3>Legal</h3>
+          <ul>
+            <li>Terms of Use</li>
+            <li>Terms of Use</li>
+            <li>Privacy Policy</li>
+          </ul>
+        </FooterMenu>
+      </div>
+    </FooterContainer>
+  );
+}
 
 Footer.propTypes = {};
 
